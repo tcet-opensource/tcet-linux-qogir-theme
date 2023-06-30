@@ -1,0 +1,64 @@
+// IBus Candidate Popup
+
+.candidate-popup-boxpointer {
+  @extend .popup-menu-boxpointer;
+}
+
+.candidate-popup-content {
+  padding: 0.5em;
+  spacing: 0.3em;
+  background-color: $base_color;
+  color: $alt_fg_color;
+  border-radius: $material_radius;
+  margin: 12px 4px 6px;
+  box-shadow: 0 3px 5px rgba(black, 0.25);
+  border: if($variant == 'light', 0, 1px) solid rgba(black, 0.75) !important;
+}
+
+.candidate-index {
+  padding: 0 0.5em 0 0;
+  color: $alt_fg_color !important;
+}
+
+.candidate-box {
+  padding: 0.3em 0.5em 0.3em 0.5em;
+  border-radius: $bt_radius;
+  margin-right: 2px;
+  color: $alt_fg_color !important;
+
+  &:hover, &:focus {
+    background-color: rgba($fg_color, 0.1) !important;
+    color: $fg_color !important;
+
+    .candidate-index { color: $fg_color !important; }
+  }
+
+  &:selected, &:checked {
+    background-color: $selected_bg_color !important;
+    color: $selected_fg_color !important;
+
+    .candidate-index { color: $selected_fg_color !important; }
+  }
+}
+
+.candidate-page-button-box {
+  height: 2em;
+  .vertical & { padding-top: 0.5em; }
+  .horizontal & { padding-left: 0.5em; }
+}
+
+.candidate-page-button {
+  padding: 0 8px;
+
+  &:hover { @include button(hover); }
+
+  &:active { @include button(active); }
+
+  &:insensitive { border-color: $borders_color; }
+
+  &:first-child { border-right: none !important; }
+}
+
+.candidate-page-button-previous { border-radius: 3px 0px 0px 3px; border-right-width: 0 !important; }
+.candidate-page-button-next { border-radius: 0px 3px 3px 0px; }
+.candidate-page-button-icon { icon-size: 1em; }

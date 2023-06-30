@@ -1,0 +1,48 @@
+/* Replace icons */
+
+/* Window buttons */
+:root[tabsintitlebar] #titlebar .titlebar-buttonbox .titlebar-close .toolbarbutton-icon,
+:root[tabsintitlebar] #titlebar #titlebar-close .toolbarbutton-icon {
+	list-style-image: url("../icons/window-close-symbolic.svg") !important;
+}
+:root[tabsintitlebar] #titlebar .titlebar-buttonbox .titlebar-max .toolbarbutton-icon,
+:root[tabsintitlebar] #titlebar #titlebar-max .toolbarbutton-icon {
+	list-style-image: url("../icons/window-maximize-symbolic.svg") !important;
+}
+:root[tabsintitlebar] #titlebar .titlebar-buttonbox .titlebar-min .toolbarbutton-icon,
+:root[tabsintitlebar] #titlebar #titlebar-min .toolbarbutton-icon {
+	list-style-image: url("../icons/window-minimize-symbolic.svg") !important;
+}
+:root[tabsintitlebar] #titlebar .titlebar-buttonbox .titlebar-restore .toolbarbutton-icon,
+:root[tabsintitlebar] #titlebar #titlebar-restore .toolbarbutton-icon,
+:root[tabsintitlebar][sizemode="maximized"] #titlebar .titlebar-max .toolbarbutton-icon,
+:root[tabsintitlebar][sizemode="maximized"] #titlebar #titlebar-max .toolbarbutton-icon {
+	list-style-image: url("../icons/view-restore-symbolic.svg") !important;
+}
+:root[tabsintitlebar][inFullscreen] #window-controls #restore-button .toolbarbutton-icon {
+	list-style-image: url("../icons/view-restore-symbolic.svg") !important;
+}
+
+/* bookmark item */
+.bookmark-item[container] {
+	list-style-image: url("../icons/folder-symbolic.svg") !important;
+}
+/* Invert icons color in dark variant */
+@media (prefers-color-scheme: dark) {
+
+	:root[tabsintitlebar] #titlebar .titlebar-buttonbox .titlebar-close .toolbarbutton-icon,
+	:root[tabsintitlebar] #titlebar #titlebar-close .toolbarbutton-icon,
+	:root[tabsintitlebar] #titlebar .titlebar-buttonbox .titlebar-max .toolbarbutton-icon,
+	:root[tabsintitlebar] #titlebar #titlebar-max .toolbarbutton-icon,
+	:root[tabsintitlebar] #titlebar .titlebar-buttonbox .titlebar-min .toolbarbutton-icon,
+	:root[tabsintitlebar] #titlebar #titlebar-min .toolbarbutton-icon,
+	:root[tabsintitlebar][inFullscreen] #window-controls #restore-button .toolbarbutton-icon,
+	:root[tabsintitlebar] #titlebar .titlebar-buttonbox .titlebar-restore .toolbarbutton-icon,
+	:root[tabsintitlebar] #titlebar #titlebar-restore .toolbarbutton-icon {
+		filter: invert(50%) brightness(150%);
+	}
+
+	.bookmark-item[container] {
+		list-style-image: url("../icons/folder-symbolic-light.svg") !important;
+	}
+}

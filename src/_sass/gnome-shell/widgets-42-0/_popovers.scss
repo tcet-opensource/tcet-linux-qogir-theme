@@ -1,0 +1,64 @@
+
+// menu items
+.popup-menu-item {
+  padding: 6px !important;
+
+  &:ltr { padding-right: 12px !important; padding-left: 12px !important; }
+  &:rtl { padding-right: 12px !important; padding-left: 12px !important; }
+}
+
+// system status menu
+.aggregate-menu {
+  .popup-menu-icon {
+    margin: 0 4px 0 0 !important;
+  }
+
+  .popup-menu-item > :first-child {
+    // account for icons in submenus with padding
+    &:ltr {
+      padding-left: 0 !important;
+      margin-left: 0 !important;
+    }
+
+    &:rtl {
+      padding-right: 0 !important;
+      margin-right: 0 !important;
+    }
+  }
+
+  .popup-sub-menu .popup-menu-item > :first-child {
+    // account for icons in submenus with padding
+    &:ltr {
+      padding-left: 12px !important;
+      margin-left: 0 !important;
+    }
+    &:rtl {
+      padding-right: 12px !important;
+      margin-right: 0 !important;
+    }
+  }
+}
+
+// desktop background menu
+.background-menu {
+  -boxpointer-gap: 0px;
+  -arrow-rise: 0px; // hide the beak on the menu
+}
+
+// right-click (and panel) app menu
+.app-menu {
+  max-width: 27.25em;
+
+  // this is unneeded at the top-level in this menu, hide it
+  .popup-menu-ornament { width: 0 !important; }
+
+  .popup-inactive-menu-item:first-child {
+    // "Open Windows" label
+    > StLabel {
+      font-weight: 700;
+      @include fontsize(9);
+      &:ltr {margin-right: 8px;}
+      &:rtl {margin-left: 8px;}
+    }
+  }
+}
