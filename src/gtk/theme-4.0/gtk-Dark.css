@@ -6853,10 +6853,6 @@ preferencesgroup > box button.background-preview-button.toggle:checked {
   outline-color: #5294e2;
 }
 
-window.thunar notebook scrolledwindow.frame.standard-view, nemo-window .nemo-window-pane notebook scrolledwindow.view, .nautilus-window notebook > stack {
-    background-image: none;
-}
-
 @define-color theme_fg_color #e6ebef;
 @define-color theme_text_color currentColor;
 @define-color theme_bg_color #32343D;
@@ -6915,9 +6911,7 @@ window.thunar notebook scrolledwindow.frame.standard-view, nemo-window .nemo-win
 @define-color STRAWBERRY_300 #FF793E;
 @define-color STRAWBERRY_500 #F15D22;
 @define-color STRAWBERRY_700 #CF3B00;
-@define-color STRAWBERRY_900 #AC1800;window.thunar notebook scrolledwindow.frame.standard-view, nemo-window .nemo-window-pane notebook scrolledwindow.view, .nautilus-window notebook > stack {
-    background-image: none;
-}
+@define-color STRAWBERRY_900 #AC1800;
 @define-color ORANGE_100 #FFDB91;
 @define-color ORANGE_300 #FFCA40;
 @define-color ORANGE_500 #FAA41A;
