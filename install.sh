@@ -13,7 +13,6 @@ fi
 SRC_DIR=$(cd $(dirname $0) && pwd)
 
 THEME_NAME=Qogir
-THEME_VARIANTS=('' '-Manjaro' '-Ubuntu')
 COLOR_VARIANTS=('' '-Light' '-Dark')
 ICON_NAME=''
 
