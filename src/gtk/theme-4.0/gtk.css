@@ -6895,6 +6895,10 @@ preferencesgroup > box button.background-preview-button.toggle:checked {
   outline-color: #5294e2;
 }
 
+window.thunar notebook scrolledwindow.frame.standard-view, nemo-window .nemo-window-pane notebook scrolledwindow.view, .nautilus-window notebook > stack {
+    background-image: none;
+}
+
 @define-color theme_fg_color #464853;
 @define-color theme_text_color currentColor;
 @define-color theme_bg_color #fafbfc;
