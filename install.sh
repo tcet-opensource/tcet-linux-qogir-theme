@@ -706,6 +706,7 @@ install_theme() {
 uninstall_theme() {
   for theme in "${themes[@]-${THEME_VARIANTS[@]}}"; do
     for color in "${colors[@]-${COLOR_VARIANTS[@]}}"; do
+      uninstall "${dest:-$DEST_DIR}" "${name:-$THEME_NAME}" "${theme}" "${color}" "${screen}"
     done
   done
 }
