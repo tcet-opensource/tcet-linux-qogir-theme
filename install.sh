@@ -701,20 +701,11 @@ install_theme() {
       install "${dest:-$DEST_DIR}" "${name:-$THEME_NAME}" "${theme}" "${color}" "${icon:-${ICON_NAME}}"
     done
   done
-
-  for color in "${colors[@]-${COLOR_VARIANTS[@]}}"; do
-    for screen in '' '-hdpi' '-xhdpi'; do
-      install_xfwm "${dest:-$DEST_DIR}" "${name:-$THEME_NAME}" "${color}" "${screen}"
-    done
-  done
 }
 
 uninstall_theme() {
   for theme in "${themes[@]-${THEME_VARIANTS[@]}}"; do
     for color in "${colors[@]-${COLOR_VARIANTS[@]}}"; do
-      for screen in '' '-hdpi' '-xhdpi'; do
-        uninstall "${dest:-$DEST_DIR}" "${name:-$THEME_NAME}" "${theme}" "${color}" "${screen}"
-      done
     done
   done
 }
