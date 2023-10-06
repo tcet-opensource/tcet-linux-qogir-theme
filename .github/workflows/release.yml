@@ -19,10 +19,15 @@ jobs:
 
       - name: Building TCET Linux Welcome Tar file
         run: |
-          touch tcet-linux-qogir-theme.tar.gz
-          tar -czf tcet-linux-qogir-theme.tar.gz --exclude=tcet-linux-qogir-theme.tar.gz .
+          ls -la
+          cd ..
+          ls -la
+          tar -czf tcet-linux-qogir-theme.tar.gz tcet-linux-qogir-theme/
           touch checksum
           sha256sum tcet-linux-qogir-theme.tar.gz > checksum
+          mv checksum tcet-linux-qogir-theme/
+          mv tcet-linux-qogir-theme.tar.gz tcet-linux-qogir-theme/
+          ls -la
           
       - name: Delete Previous Latest release
         uses: dev-drprasad/delete-tag-and-release@v1.0
