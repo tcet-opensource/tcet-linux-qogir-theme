@@ -1885,13 +1885,11 @@ treeview.view {
   acceleditor > label { background-color: $selected_bg_color; }
 
   &:selected {
-    &, &:focus {
-      border-radius: 0;
-      border-left-color: mix($selected_fg_color, $selected_bg_color, 50%);
-      border-top-color: transparentize($fg_color, 0.9);   // doesn't work unfortunately
+    border-radius: 0;
+    border-left-color: mix($selected_fg_color, $selected_bg_color, 50%);
+    border-top-color: transparentize($fg_color, 0.9);   // doesn't work unfortunately
 
-      @extend %selected_items;
-    }
+    &, &:focus, &:backdrop { @extend %selected_items; }
   }
 
   &:disabled {
@@ -2141,14 +2139,14 @@ menu,
     // border: 1px solid $borders_color;
 
     &.top {
-      margin-top: -4px;
+      margin-top: -6px;
       border-bottom: 1px solid $borders_color;
       -gtk-icon-source: -gtk-icontheme('pan-up-symbolic');
     }
 
     &.bottom {
-      margin-top: 8px;
-      margin-bottom: -12px;
+      margin-top: 12px;
+      margin-bottom: -18px;
       border-top: 1px solid $borders_color;
       -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
     }
@@ -3624,14 +3622,22 @@ tooltip {
     // see https://bugzilla.gnome.org/show_bug.cgi?id=736155 for details.
     background-color: lighten($osd_bg_color, 10%);
     background-clip: padding-box;
+    border-radius: $material_radius;
 
     label { padding: 4px; }
   }
 
-  border-radius: $bt_radius;
+  &.background.csd {
+    border-radius: $material_radius;
+    box-shadow: 0 2px 3px rgba(black, 0.25);
+    margin: 0 6px 8px;
+  }
+
   box-shadow: none;
 
-  decoration { background-color: transparent; }
+  decoration {
+    background-color: transparent;
+  }
 
   * { //Yeah this is ugly
     background-color: transparent;

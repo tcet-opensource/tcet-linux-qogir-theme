@@ -176,19 +176,28 @@
     color: rgba($fg_color, 0.85);
     font-weight: normal;
     border: 1px solid transparent;
+    transition: none;
 
     &:hover {
       background-color: if($variant=='light', mix($fg_color,$bg_color,5%), mix($fg_color,$bg_color,10%));
       border: 1px solid $borders_color;
     }
 
-    &:active, &:checked {
+    &:active {
       border: 1px solid if($variant=='light', $sec_selected_bg_color, $alt_selected_bg_color);
       background-color: $selected_bg_color;
-      &, arrow { @extend %selected_items; }
+      color: $selected_fg_color;
     }
 
     &:disabled { color: $insensitive_fg_color; }
+  }
+
+  carousel button.flat:not(.image-button) {
+    &:active:focused {
+      color: $selected_bg_color;
+      background-color: transparent;
+      border-color: transparent;
+    }
   }
 
   &.budgie-menu {
@@ -433,8 +442,8 @@ window.budgie-popover:not(.csd) {
     .right & { border-top-width: 1px; }
   }
 
-  .workspace-item,
-  .workspace-add-button {
+  .workspace-item {
+    transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
     border: 0 solid rgba(white, 0.12);
 
     .top &,
@@ -446,20 +455,15 @@ window.budgie-popover:not(.csd) {
 
     .left &,
     .right & { border-bottom-width: 1px; }
-  }
 
-  .workspace-item {
-    transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
-
-    &.current-workspace { background-color: rgba(white, 0.12); }
+    &.current-workspace { background-color: rgba($panel_fg, 0.08); }
   }
 
   .workspace-add-button {
-    background-color: transparent;
-
-    &:hover { box-shadow: none; }
-    &:active { background-image: none; }
-    &:active image { margin: 1px 0 -1px; }
+    min-height: 24px;
+    min-width: 24px;
+    padding: 0;
+    border-radius: $bt_radius;
   }
 
   .workspace-icon-button {
@@ -1092,6 +1096,25 @@ box.vertical > stack > box.vertical {
   }
 }
 
+.raven-notifications-group {
+  .raven-notifications-group-header {
+    padding-left: $cont_padding;
+  }
+
+  list > row {
+    border-radius: $bt_radius;
+    padding: $cont_padding;
+
+    .notification-clone {
+      padding-left: $cont_padding;
+    }
+
+    button.flat {
+      @extend %circular_button;
+    }
+  }
+}
+
 .devices-list.sound-devices {
   > row.activatable > box.horizontal {
     label { padding-left: 8px; }
@@ -1161,6 +1184,15 @@ box.vertical > stack > box.vertical {
   > box > grid {
     padding: 24px;
   }
+}
+
+// power dialog window
+window.budgie-power-dialog {
+  background-color: $base_color;
+  border-radius: $material_radius;
+
+  &.background.csd,
+  decoration { border-radius: $material_radius; }
 }
 
 // Session Dialog
@@ -1235,7 +1267,6 @@ box.vertical > stack > box.vertical {
 
   scrolledwindow { border-top: 1px solid $borders_color; }
 }
-
 
 // pixel-saver(?) applet
 .budgie-panel box.titlebar {

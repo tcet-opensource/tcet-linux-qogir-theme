@@ -64,6 +64,11 @@ $side_theme_alt_fg: $dark_sidebar_icon_fg;
     background-color: mix($side_theme_alt_fg, $side_theme_bg, 10%);
   }
 
+  &:active {
+    color: $side_theme_fg;
+    background-color: mix($side_theme_fg, $side_theme_bg, 15%);
+  }
+
   &:disabled, label:disabled {
     color: rgba($side_theme_alt_fg, 0.35);
   }
@@ -102,43 +107,12 @@ $side_theme_alt_fg: $dark_sidebar_icon_fg;
   }
 }
 
-%side_titlebutton {
-  button.titlebutton {
-    @each $k in ('close', 'maximize', 'minimize', 'restore') {
-      @each $l, $m in ('',''), (':backdrop','-backdrop'), (':hover','-hover'), (':active','-active') {
-        &.#{$k}#{$l} { background-image: -gtk-scaled(url('assets/titlebutton-#{$k}#{$m}-dark#{$asset_suffix_win}.png'),
-                                                     url('assets/titlebutton-#{$k}#{$m}-dark#{$asset_suffix_win}@2.png'));
-        }
-      }
-    }
-  }
-}
-
-%side_max_titlebutton {
-  button.titlebutton {
-    @each $l, $m in ('',''), (':backdrop','-backdrop'), (':hover','-hover'), (':active','-active') {
-      &.maximize#{$l} { background-image: -gtk-scaled(url('assets/titlebutton-restore#{$m}-dark#{$asset_suffix_win}.png'),
-                                                      url('assets/titlebutton-restore#{$m}-dark#{$asset_suffix_win}@2.png'));
-      }
-    }
-  }
-}
-
 %side_headerbar {
   color: $side_theme_fg;
   background-color: $side_theme_bg;
   background-image: image($side_theme_bg);
   border: none;
   box-shadow: none;
-
-  @extend %side_titlebutton;
-
-  .fullscreen &,
-  .maximized & {
-    > box.left.horizontal {
-      @extend %side_max_titlebutton;
-    }
-  }
 
   button:not(.titlebutton) {
     color: $side_theme_fg;
@@ -155,6 +129,8 @@ $side_theme_alt_fg: $dark_sidebar_icon_fg;
   }
 
   button.titlebutton {
+    color: $side_theme_fg;
+
     &.appmenu { // appmenu button
       border: none;
       min-height: 30px;
@@ -174,6 +150,29 @@ $side_theme_alt_fg: $dark_sidebar_icon_fg;
 
       &:checked, &:active {
         background-color: rgba($side_theme_fg, 0.25);
+      }
+    }
+
+    &.maximize, &.minimize {
+      &:hover {
+        background-color: rgba($side_theme_fg, 0.1);
+      }
+
+      &:active {
+        background-color: rgba($side_theme_fg, 0.2);
+        color: white;
+      }
+    }
+
+    &.close {
+      &:hover {
+        background-color: $wm_button_close_hover_bg;
+        color: white;
+      }
+
+      &:active {
+        background-color: $wm_button_close_active_bg;
+        color: white;
       }
     }
   }
@@ -456,15 +455,6 @@ window.org-gnome-gedit {
   }
 }
 
-window.fullscreen.org-gnome-gedit,
-window.maximized.org-gnome-gedit {
-  > .titlebar > headerbar:first-child {
-    > box.left.horizontal {
-      @extend %side_max_titlebutton;
-    }
-  }
-}
-
 .open-document-selector-treeview.view { // Popover menu view
   padding: 3px $cont_padding 3px $cont_padding;
   border-color: $borders_color;  // disable borders, making them transparent doesn't work for some reason
@@ -614,22 +604,16 @@ list#AutostartListBoxTweakGroup {
 // Themed left side headerbar
 .titlebar > headerbar.titlebar.tweak-titlebar-left {
   @extend %side_headerbar;
-
-  .fullscreen &,
-  .maximized & {
-    > box.left.horizontal {
-      @extend %side_max_titlebutton;
-    }
-  }
 }
 
 // Themed left sidebar
-list.tweak-categories {
+list.tweak-categories,
+leaflet > box > scrolledwindow > viewport > list.navigation-sidebar {
   @extend %side_background;
 
-  separator { background: none; }
+  > separator { background: none; }
 
-  > row.activatable.tweak-category {
+  > row.activatable {
     @extend %side_views;
   }
 }
@@ -675,27 +659,6 @@ window.background.csd {
       border-right-style: if($variant == 'light', none, solid);
       background: none;
       min-width: 0;
-    }
-  }
-
-  &.fullscreen,
-  &.maximized {
-    > box.titlebar.horizontal {
-      > headerbar:first-child {
-        > box.left.horizontal {
-          @extend %side_max_titlebutton;
-        }
-      }
-    }
-
-    > headerbar.titlebar { // gnome 3.32
-      > box.horizontal > headerbar:first-child,
-      > hdyleaflet > headerbar:first-child,
-      > leaflet > headerbar:first-child {
-        > box.left.horizontal {
-          @extend %side_max_titlebutton;
-        }
-      }
     }
   }
 
@@ -844,17 +807,6 @@ window.geary-main-window {
   }
 }
 
-window#GearyMainWindow.fullscreen,
-window#GearyMainWindow.maximized {
-  .geary-titlebar-left {
-    &, &.geary-titlebar {
-      > box.left.horizontal {
-        @extend %side_max_titlebutton;
-      }
-    }
-  }
-}
-
 // left-pane styling (legacy)
 .sidebar.vertical > paned.sidebar-pane-separator {
   @extend %side_background;
@@ -922,6 +874,7 @@ stack#conversation_viewer {
     > leaflet > leaflet > box { // 40.0
       .geary-conversation-frame { // center
         margin: -1px 0;
+
         treeview.view {
           &:hover { background-color: mix($fg_color, $base_color, 15%); }
 
@@ -941,12 +894,6 @@ stack#conversation_viewer {
         > border { @extend  %folder_frame_border; }
         > scrolledwindow { @extend %folder_frame; }
       }
-
-      // > revealer > components-conversation-actions {
-      //   background-color: $bg_color;
-      //   color: $fg_color;
-      //   border-top: 1px solid $solid_borders_color;
-      // }
 
       separator { background: none; }
 
@@ -973,6 +920,16 @@ stack#conversation_viewer {
         }
       }
     }
+  }
+}
+
+.geary-main-layout > leaflet > leaflet { // 43.0
+  > box.vertical:first-child > headerbar.titlebar {
+    @extend %side_headerbar;
+  }
+
+  treeview.view.sidebar {
+    @extend %side_views;
   }
 }
 
@@ -1162,13 +1119,6 @@ leaflet.unfolded {  // > 3.38
         color: transparent;
         background-color: transparent;
       }
-    }
-
-    @extend %side_titlebutton;
-
-    .fullscreen &,
-    .maximized & {
-      @extend %side_max_titlebutton;
     }
   }
 }
