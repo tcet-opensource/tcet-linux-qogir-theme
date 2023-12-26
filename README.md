@@ -4,6 +4,7 @@ This repository contains the source code for the Qogir gtk theme used in [TCET-L
 
 We have modified the original [Qogir-theme](https://github.com/vinceliuice/Qogir-theme) specifically for TCET-Linux.
 
+
 ## Showcase
 
 ![Showcase](https://github.com/tcet-opensource/tcet-linux-qogir-theme/assets/53911515/99724ff7-da3f-4352-9a2a-3adabe342b85)
