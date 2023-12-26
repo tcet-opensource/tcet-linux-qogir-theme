@@ -1,0 +1,48 @@
+/* Square title buttons old style */
+
+@namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* Window buttons box */
+:root[tabsintitlebar] #titlebar .titlebar-buttonbox-container,
+:root[tabsintitlebar] #titlebar-buttonbox-container,
+:root[tabsintitlebar][inFullscreen] #window-controls {
+	-moz-appearance: none !important;
+	padding: 0 0;
+	position: absolute !important;
+	right: 6px;
+	top: 1px;
+	display: block !important;
+}
+
+:root[tabsintitlebar] #titlebar .titlebar-buttonbox-container,
+:root[tabsintitlebar] #titlebar-buttonbox-container,
+:root[tabsintitlebar][inFullscreen] #window-controls {
+	right: 0;
+	top: 0;
+}
+
+/* Left window buttons */
+@media (-moz-gtk-csd-reversed-placement) {
+	/* Window buttons box */
+	:root[tabsintitlebar] #titlebar .titlebar-buttonbox-container {
+		left: 0;
+	}
+	:root[tabsintitlebar] #titlebar .titlebar-close,
+	:root[tabsintitlebar] #titlebar #titlebar-close {
+		border-top-left-radius: 8px !important;
+	}
+}
+
+/* Window buttons style */
+:root[tabsintitlebar] #titlebar .titlebar-button,
+:root[tabsintitlebar][inFullscreen] #window-controls toolbarbutton {
+	height: 38px !important;
+	margin: 0 0 !important;
+	width: 38px;
+	border-radius: 0 !important;
+}
+
+:root[tabsintitlebar]:not([sizemode="maximized"]) #titlebar .titlebar-close,
+:root[tabsintitlebar] #titlebar #titlebar-close {
+	border-top-right-radius: 8px !important;
+}
